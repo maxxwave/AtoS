@@ -16,7 +16,7 @@
 #include "../../hdr/mat.h"
 #include "../../hdr/integrator.h"
 #include "../../hdr/hysteresis.h"
-//#include "../../hdr/magnetization_out.h"
+#include "../../hdr/magnetization_out.h"
 namespace program{
     int H_max=28;
     int DH=1;
@@ -30,15 +30,15 @@ namespace program{
 
                 st::H_applied[2] = branch * H;
 
-                int time=0;   
+                int time=0;
                 while(time <= times::loop_time_steps){
-                    
+
                     integrator::LLG();
                     time ++;
                }
-                //integrator::LLG();
+            
                std::cout<<st::H_ani[5].z<<"\t"<<st::H_ex[5].z<< "\t"<< st::H_total[5].z<<"\t"<<st::atom[5].sz<<std::endl;
-  //          magnetization::magnetization_out();
+               magnetization::magnetization_out();
             }
 
               //  std::cout<<st::H_ani[5].z<<"\t"<<st::H_ex[5].z<< "\t"<< st::H_total[5].z<<"\t"<<st::atom[5].sz<<std::endl;
