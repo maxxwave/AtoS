@@ -4,9 +4,9 @@
 
 namespace mat{
     //dimensions in nm
-     double x_size =10;
-     double y_size =10;
-     double z_size =10;
+     double x_size =5;
+     double y_size =5;
+     double z_size =5;
     //lattice parameters in A
      double a=3.249;
      double b=3.249;

@@ -9,8 +9,8 @@ LIBDIR=
 LDFLAGS =   #-L$(LIBDIR)
 EXE=ASMS
 #langevin dynamics
-SRC= main.cpp  create.cpp mat.cpp  storage.cpp fields.cpp integrators/LLG.cpp programs/hysteresis.cpp 
-#OBJ=$(SRC:%.cpp=lib/%.o)
+SRC= main.cpp  create.cpp mat.cpp  storage.cpp fields.cpp integrators/LLG.cpp programs/hysteresis.cpp programs/magnetization.cpp 
+OBJ=$(SRC:%.cpp=lib/%.o)
 
 all: $(SRC) $(EXE)
 
