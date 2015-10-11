@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
+#include <cstdlib>
 //ASMS headers
 #include "../hdr/create.h"
 #include "../hdr/mat.h"
