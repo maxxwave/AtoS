@@ -13,7 +13,7 @@
 #include "../../hdr/template.h"
 namespace integrator{
 
-     //defining the coeficients ==> DS = B1 (S X H) + B2 (S X S X H)
+     //defining the coeficients =|> DS = B1 (S X H) + B2 (S X S X H)
      double B1 = - mat::gyro / (1 + mat::alpha * mat::alpha);
      double B2 =  -(mat::alpha * mat::gyro) / (1 + mat::alpha * mat::alpha);
      double dt = times::time_step; //times::time_step;
@@ -141,7 +141,7 @@ void LLG(){
                     }
                     fields_t::H_ex();
                     fields_t::H_an();
-        	    fields_t::H_total(); //}//end of index's for
+        	    fields_t::H_total(); 
 
        }//end of LLG function
 

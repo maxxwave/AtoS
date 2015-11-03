@@ -26,7 +26,7 @@ namespace program{
     void hysteresis(){
         for(branch = -1; branch<2; branch +=2) {
 
-            for (H=H_min; H<=H_max; H += DH){
+        for (H=H_min; H<=H_max; H += DH){
 
                 st::H_applied[2] = branch * H;
 
@@ -37,8 +37,9 @@ namespace program{
                     time ++;
                }
             
-               std::cout<<st::H_ani[5].z<<"\t"<<st::H_ex[5].z<< "\t"<< st::H_total[5].z<<"\t"<<st::atom[5].sz<<std::endl;
+              // std::cout<<st::H_ani[0].z<<"\t"<<st::H_ex[0].z<< "\t"<< st::H_total[0].z<<"\t"<<st::atom[0].sz<<std::endl;
                magnetization::magnetization_out();
+               
             }
 
               //  std::cout<<st::H_ani[5].z<<"\t"<<st::H_ex[5].z<< "\t"<< st::H_total[5].z<<"\t"<<st::atom[5].sz<<std::endl;

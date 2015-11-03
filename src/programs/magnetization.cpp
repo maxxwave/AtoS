@@ -13,15 +13,16 @@ namespace magnetization{
         double Mx=0;
         double My=0;
         double Mz=0;
-         std::ofstream output;
-         output.open("output.dat");
+         std::ofstream output("output", std::ios_base::app | std::ios_base::out);
        for(int i=0; i < create::index; i++){
            Mx += st::atom[i].sx;
            My += st::atom[i].sy;
            Mz += st::atom[i].sz;
+       //output << Mx/sqrt(Mx*Mx + My*My + Mz*Mz) << "\t" << My/sqrt(Mx*Mx + My*My + Mz*Mz)  << "\t" << Mz/sqrt(Mx*Mx + My*My + Mz*Mz)  << "\t" << st::H_applied[2] << "\n";
        }
-       output << Mx << "\t" << My << "\t" << Mz << std::endl;
-       //std::cout << Mx/create::index<<"\t"<< My/create::index << Mz/create::index << st::H_applied<<std::endl;
+      output << Mx/sqrt(Mx*Mx + My*My + Mz*Mz) << "\t" << My/sqrt(Mx*Mx + My*My + Mz*Mz)  << "\t"
+             << Mz/sqrt(Mx*Mx + My*My + Mz*Mz) << "\t" << sqrt(Mx*Mx + My*My + Mz*Mz) <<"\t"<<st::H_applied[2] << std::endl;
+      std::cout << Mx/sqrt(Mx*Mx + My*My + Mz*Mz) << "\t" << My/sqrt(Mx*Mx + My*My + Mz*Mz)  << "\t" << Mz/sqrt(Mx*Mx + My*My + Mz*Mz)  << "\t" << st::H_applied[2] << "\n";
        output.close();
     }//end of void
 }//end of namespace

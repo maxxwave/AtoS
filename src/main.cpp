@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <cstdlib>
+#include <sstream>
 //ASMS headers
 #include "../hdr/create.h"
 #include "../hdr/mat.h"
@@ -21,12 +22,26 @@ int main(){
     std::cout << "email address: rva502@york.ac.uk"<<std::endl;
     std::cout << "========================================================================================================================================="<<std::endl;
     std::cout << "ASMS HAS STARTED TO RUN" <<std::endl;
-     create::create_sc();
-    std::cout << "ASMS has been initialized succesfully"<<std::endl;
+    std::cout << "Insert the type of structure:" <<"\n";
+    std::cout << "press 0 for single spin, 1 for simple cubic (sc), 2 for bcc "<< std::endl;
+    int option_A;
+    std::cin >> option_A;
+    if(option_A==0){
+            create::single_spin();
+    } else
+    if(option_A==1){
+            create::create_sc();
+    } else  
+    {   std::cout << "Invalid option!"<< std::endl;}
+    //std::cout << "ASMS has been initialized succesfully"<<std::endl;
      fields_t::H_an();
      fields_t::H_ex();
      fields_t::H_total();
-     program::hysteresis();
+    
+    std::cout << "ASMS has been initialized succesfully"<<std::endl;
+
+
+    program::hysteresis();
 
     return 0;
 }

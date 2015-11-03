@@ -6,9 +6,28 @@
 
 namespace  create{
     int index=0;
+    void single_spin();
     void create_sc();
     void create_bcc();
     //so on
+//case 0    
+        void single_spin(){
+        index = 1;
+        st::atom.resize(index);
+        //initializing the spin
+        for (int i=0; i<index; i++ ){
+	st::atom[index].sx = 0.04;
+	st::atom[index].sy = 0.04;
+	st::atom[index].sz = 0.93;
+	st::atom[index].cx = 0;
+	st::atom[index].cy = 0;
+	st::atom[index].cz = 0;
+        }//end of for loop
+
+            std::cout << "The single spin has been created!";
+        }// end of single spin
+
+//case 1
         void create_sc(){
 	int  A = int (mat::x_size*10/mat::a);
 	int  B = int (mat::y_size*10/mat::b);
@@ -32,8 +51,8 @@ namespace  create{
 			}// end of k for
 		}//end of j for
 	}//end of i for
-        
-std::cout << "The system contains " <<"\t"<< index <<"\t"<<"atoms"<<std::endl;
-} // end of void create
+
+        std::cout << "The system contains " <<"\t"<< index <<"\t"<<"atoms"<<std::endl;
+        } // end of void create
 }//end of create namespace
 

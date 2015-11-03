@@ -15,9 +15,10 @@ namespace integrator{
     extern std::vector<template_t::atom> S_initial;
     extern std::vector<template_t::atom> S_tot;
     extern void LLG();
+    extern void SISB();
     //extern void Cayley_method();
-    extern void LLB();
-    extern void MonteCarlo();
+    //extern void LLB();
+    //extern void MonteCarlo();
     
 }
 #endif

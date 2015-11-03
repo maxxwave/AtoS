@@ -40,7 +40,7 @@ int  H_an(){
 	for (int i=0; i<create::index; i++){
 	    st::H_ani[i].x=0.0;
 	    st::H_ani[i].y=0.0;
-	    st::H_ani[i].z =- 2.0 * mat::ku * st::atom[i].sz/9.274e-24;
+	    st::H_ani[i].z = -2.0 * mat::ku * st::atom[i].sz/9.274e-24;
         } //end of for loop
 	return 0;
 	}
