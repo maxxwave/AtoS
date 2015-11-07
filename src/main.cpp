@@ -15,7 +15,7 @@
 
 int main(){
     std::cout << "========================================================================================================================================="<<std::endl;
-    std::cout << "ASMS code has been developed by MSc Razvan V Ababei according to Atomistic spin model simulations of magnetic nanomaterials"<<std::endl;
+    std::cout << "ASMS code has been developed by MSc Razvan V Ababei according to Atomistic Spin Model simulations of magnetic nanomaterials"<<std::endl;
     std::cout << "========================================================================================================================================="<<std::endl;
     std::cout << "\n";
     std::cout << "This code is free but no warranty! For any queries or suggestions please contact the author!"<<std::endl;
@@ -31,17 +31,27 @@ int main(){
     } else
     if(option_A==1){
             create::create_sc();
-    } else  
+    } else
     {   std::cout << "Invalid option!"<< std::endl;}
     //std::cout << "ASMS has been initialized succesfully"<<std::endl;
      fields_t::H_an();
      fields_t::H_ex();
      fields_t::H_total();
-    
-    std::cout << "ASMS has been initialized succesfully"<<std::endl;
 
+     std::cout << "ASMS has been initialized succesfully"<<std::endl;
 
-    program::hysteresis();
+     int program;
+     std::cout<<"Chose the program:"<<"\n";
+     std::cout<<"press 1 for hysteresis loop, 2 for time series, 3 for laser pulse  "<<std::endl;
+     std::cin>>program;
+
+     if (program == 1){
+     program::hysteresis();}
+
+     else if(program == 2){
+     program::time_series();}
+
+     else {std::cout << "Invalid program!"<< std::endl;}
 
     return 0;
 }

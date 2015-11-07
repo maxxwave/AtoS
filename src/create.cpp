@@ -16,12 +16,12 @@ namespace  create{
         st::atom.resize(index);
         //initializing the spin
         for (int i=0; i<index; i++ ){
-	st::atom[index].sx = 0.04;
-	st::atom[index].sy = 0.04;
-	st::atom[index].sz = 0.93;
-	st::atom[index].cx = 0;
-	st::atom[index].cy = 0;
-	st::atom[index].cz = 0;
+	st::atom[i].sx = 0.13;
+	st::atom[i].sy = 0.14;
+	st::atom[i].sz = 0.76;
+	st::atom[i].cx = index;
+	st::atom[i].cy = index;
+	st::atom[i].cz = index;
         }//end of for loop
 
             std::cout << "The single spin has been created!";
@@ -41,9 +41,9 @@ namespace  create{
 	for (int i=0; i < A; i++){
 		for (int j=0; j < B; j++){
 			for (int k=0; k < C; k++){
-			st::atom[index].sx = 0.44;
-			st::atom[index].sy = 0.58;
-			st::atom[index].sz = 0.56;
+			st::atom[index].sx = 0.1;
+			st::atom[index].sy = 0.02;
+			st::atom[index].sz = 0.9;
 			st::atom[index].cx = mat::a * i;
 			st::atom[index].cy = mat::b * j;
 			st::atom[index].cz = mat::c * k;

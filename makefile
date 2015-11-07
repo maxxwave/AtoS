@@ -2,9 +2,9 @@ LIBS=-lm -lfftw3
 all: ASMS
 CXX=g++
 EXE= ASMS
-ASMS: main.o create.o magnetization.o fields.o mat.o storage.o template.o times.o LLG.o  hysteresis.o 
+ASMS: main.o create.o magnetization.o fields.o mat.o storage.o template.o times.o LLG.o  hysteresis.o time-series.o 
 
-	g++ main.o create.o magnetization.o fields.o mat.o storage.o template.o times.o LLG.o  hysteresis.o -o ASMS_run
+	g++ main.o create.o magnetization.o fields.o mat.o storage.o template.o times.o LLG.o  hysteresis.o time-series.o -o ASMS_run
 main.o: src/main.cpp
 
 	g++ -c src/main.cpp
@@ -44,6 +44,9 @@ LLG.o: src/integrators/LLG.cpp
 magnetization.o: src/programs/magnetization.cpp
 
 	g++ -c src/programs/magnetization.cpp
+
+time-series.o: src/programs/time-series.cpp
+	g++ -c src/programs/time-series.cpp
 clean:
 	rm ./*.o ASMS
 

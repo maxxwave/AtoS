@@ -24,6 +24,7 @@ namespace program{
     int H;
     int branch;
     void hysteresis(){
+
         for(branch = -1; branch<2; branch +=2) {
 
         for (H=H_min; H<=H_max; H += DH){
@@ -34,9 +35,8 @@ namespace program{
                 while(time <= times::loop_time_steps){
 
                     integrator::LLG();
-                    time ++;
-               }
-            
+                    time++;
+               }    
               // std::cout<<st::H_ani[0].z<<"\t"<<st::H_ex[0].z<< "\t"<< st::H_total[0].z<<"\t"<<st::atom[0].sz<<std::endl;
                magnetization::magnetization_out();
                

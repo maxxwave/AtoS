@@ -15,7 +15,7 @@ namespace integrator{
 
      //defining the coeficients =|> DS = B1 (S X H) + B2 (S X S X H)
      double B1 = - mat::gyro / (1 + mat::alpha * mat::alpha);
-     double B2 =  -(mat::alpha * mat::gyro) / (1 + mat::alpha * mat::alpha);
+     double B2 = - (mat::alpha * mat::gyro) / (1 + mat::alpha * mat::alpha);
      double dt = times::time_step; //times::time_step;
      double time = times::loop_time_steps;// times::loop_time_steps;
      //defining the euler step
@@ -28,7 +28,7 @@ namespace integrator{
      //normalized spin
      std::vector<template_t::atom>  S_tot;
 void LLG(){
-	//defining the coeficients ==> DS = B1 (S X H) + B2 (S X S X H)
+	//defining the coeficients ==> DS = -B1 (S X H) - B2 (S X S X H)
 /*	double B1 = - mat::gyro / (1 + mat::alpha * mat::alpha);
 	double B2 =  -(mat::alpha * mat::gyro) / (1 + mat::alpha * mat::alpha);
 	double dt = times::time_step; //times::time_step;
@@ -52,31 +52,36 @@ void LLG(){
         S_initial.resize(create::index);
 
       //for (int t=0; t < time; t++){
+          //  fields_t::H_ex();
+            //fields_t::H_an();
+            fields_t::H_total(); 
+                  
+
 
             for (int i=0; i<create::index; i++){
 
 
-                S_initial[i].sx =st::atom[i].sx;
-                S_initial[i].sy =st::atom[i].sy;
-                S_initial[i].sz =st::atom[i].sz;
+                S_initial[i].sx = st::atom[i].sx;
+                S_initial[i].sy = st::atom[i].sy;
+                S_initial[i].sz = st::atom[i].sz;
 
-    		DS[i].sx = B1*( S_initial[i].sy *st::H_total[i].z - S_initial[i].sz * st::H_total[i].y) +B2*(
-				S_initial[i].sy * S_initial[i].sx *st::H_total[i].y -
-				S_initial[i].sy * S_initial[i].sy *st::H_total[i].x +
-				S_initial[i].sz * S_initial[i].sx *st::H_total[i].z -
-				S_initial[i].sz * S_initial[i].sz *st::H_total[i].x );
+    		DS[i].sx = B1*( S_initial[i].sy * st::H_total[i].z - S_initial[i].sz * st::H_total[i].y) + B2*(
+				S_initial[i].sy * S_initial[i].sx * st::H_total[i].y -
+				S_initial[i].sy * S_initial[i].sy * st::H_total[i].x +
+				S_initial[i].sz * S_initial[i].sx * st::H_total[i].z -
+				S_initial[i].sz * S_initial[i].sz * st::H_total[i].x );
 
-	      	DS[i].sy = B1*( -S_initial[i].sx *st::H_total[i].z + S_initial[i].sz * st::H_total[i].z) +B2*(
-			       -S_initial[i].sz * S_initial[i].sx * st::H_total[i].y +
+	      	DS[i].sy =  B1*( -S_initial[i].sx * st::H_total[i].z + S_initial[i].sz * st::H_total[i].x) + B2*(
+			       -S_initial[i].sx * S_initial[i].sx * st::H_total[i].y +
 				S_initial[i].sx * S_initial[i].sy * st::H_total[i].x +
 				S_initial[i].sz * S_initial[i].sy * st::H_total[i].z -
 				S_initial[i].sz * S_initial[i].sz * st::H_total[i].y );
 
-		DS[i].sz = B1*( S_initial[i].sx *st::H_total[i].y - S_initial[i].sy * st::H_total[i].x) +B2*(
-			       -S_initial[i].sx * S_initial[i].sx *st::H_total[i].z +
-				S_initial[i].sx * S_initial[i].sz *st::H_total[i].x -
-				S_initial[i].sy * S_initial[i].sy *st::H_total[i].z -
-				S_initial[i].sy * S_initial[i].sz *st::H_total[i].y );
+		DS[i].sz = B1*( S_initial[i].sx * st::H_total[i].y - S_initial[i].sy * st::H_total[i].x) + B2*(
+			       -S_initial[i].sx * S_initial[i].sx * st::H_total[i].z +
+				S_initial[i].sx * S_initial[i].sz * st::H_total[i].x -
+				S_initial[i].sy * S_initial[i].sy * st::H_total[i].z +
+				S_initial[i].sy * S_initial[i].sz * st::H_total[i].y );
 
 		S_par[i].sx = S_initial[i].sx + dt * DS[i].sx;
 		S_par[i].sy = S_initial[i].sy + dt * DS[i].sy;
@@ -99,28 +104,28 @@ void LLG(){
 //==========================================================================================================================================================
 //                             Updating the fields
 //==========================================================================================================================================================
-                                      fields_t::H_an();
-                                      fields_t::H_ex();
+                                     // fields_t::H_an();
+                                    //  fields_t::H_ex();
                                       fields_t::H_total();
 //==========================================================================================================================================================
                     for (int k=0; k<create::index;k++){
 
-			 DS_prime[k].sx = B1*( S_prime[k].sy *st::H_total[k].z - S_prime[k].sz * st::H_total[k].y) +B2*(
+			 DS_prime[k].sx =  B1*( S_prime[k].sy *st::H_total[k].z - S_prime[k].sz * st::H_total[k].y) + B2*(
                                 S_prime[k].sy * S_prime[k].sx *st::H_total[k].y -
                                 S_prime[k].sy * S_prime[k].sy *st::H_total[k].x +
                                 S_prime[k].sz * S_prime[k].sx *st::H_total[k].z -
                                 S_prime[k].sz * S_prime[k].sz *st::H_total[k].x );
 
-			 DS_prime[k].sy = B1*( -S_prime[k].sx *st::H_total[k].z + S_prime[k].sz * st::H_total[k].z) +B2*(
-                                -S_prime[k].sz * S_prime[k].sx *st::H_total[k].y +
+			 DS_prime[k].sy =  B1*( -S_prime[k].sx *st::H_total[k].z + S_prime[k].sz * st::H_total[k].x) + B2*(
+                               -S_prime[k].sx * S_prime[k].sx *st::H_total[k].y +
                                 S_prime[k].sx * S_prime[k].sy *st::H_total[k].x +
                                 S_prime[k].sz * S_prime[k].sy *st::H_total[k].z -
                                 S_prime[k].sz * S_prime[k].sz *st::H_total[k].y );
 
-			 DS_prime[k].sz = B1*( S_prime[k].sx *st::H_total[k].y - S_prime[k].sy * st::H_total[k].x) +B2*(
-                                -S_prime[k].sx * S_prime[k].sx *st::H_total[k].z +
+			 DS_prime[k].sz =  B1*( S_prime[k].sx *st::H_total[k].y - S_prime[k].sy * st::H_total[k].x) + B2*(
+                               -S_prime[k].sx * S_prime[k].sx *st::H_total[k].z +
                                 S_prime[k].sx * S_prime[k].sz *st::H_total[k].x -
-                                S_prime[k].sy * S_prime[k].sy *st::H_total[k].z -
+                                S_prime[k].sy * S_prime[k].sy *st::H_total[k].z +
                                 S_prime[k].sy * S_prime[k].sz *st::H_total[k].y );
 
                         S_tot[k].sx = S_initial[k].sx + 0.5*(DS[k].sx + DS_prime[k].sx)*dt;
@@ -139,9 +144,9 @@ void LLG(){
                         st::atom[k].sy = S_tot[k].sy;
                         st::atom[k].sz = S_tot[k].sz;
                     }
-                    fields_t::H_ex();
-                    fields_t::H_an();
-        	    fields_t::H_total(); 
+                    //fields_t::H_ex();
+                   // fields_t::H_an();
+        	   // fields_t::H_total(); 
 
        }//end of LLG function
 

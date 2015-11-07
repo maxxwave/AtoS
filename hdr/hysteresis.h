@@ -8,6 +8,9 @@ namespace program{
     extern int DH;
     extern int branch;
     extern int H;
+    extern void time_series();
+    extern double H_app;
+    extern int time;
 
 }
 #endif

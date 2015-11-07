@@ -40,7 +40,7 @@ int  H_an(){
 	for (int i=0; i<create::index; i++){
 	    st::H_ani[i].x=0.0;
 	    st::H_ani[i].y=0.0;
-	    st::H_ani[i].z = -2.0 * mat::ku * st::atom[i].sz/9.274e-24;
+	    st::H_ani[i].z = 2.0 * mat::ku * st::atom[i].sz/(mat::mu_s*9.274e-24);
         } //end of for loop
 	return 0;
 	}
@@ -51,9 +51,9 @@ int H_ex(){
 	//case 1
         st::H_ex.resize(create::index);
 	for (int i=0; i<create::index; i++){
-            st::H_ex[i].x -= Ex::Jij * st::atom[i].sx;
-            st::H_ex[i].y -= Ex::Jij * st::atom[i].sy;
-            st::H_ex[i].z -= Ex::Jij * st::atom[i].sz;
+            st::H_ex[i].x -= (Ex::Jij * st::atom[i].sx/(mat::mu_s*9.274e-24));
+            st::H_ex[i].y -= (Ex::Jij * st::atom[i].sy/(mat::mu_s*9.274e-24));
+            st::H_ex[i].z -= (Ex::Jij * st::atom[i].sz/(mat::mu_s*9.274e-24));
         }//end of for loop
 	// We need to update for other cases
 	return 0;
@@ -96,9 +96,9 @@ int H_total(){
     st::H_applied.resize(3,0);
     st::H_total.resize(create::index);
     for  (int i=0; i<create::index; i++){
-        st::H_total[i].x = st::H_ani[i].x + st::H_ex[i].x + st::H_applied[0];//create::index; // + others
-        st::H_total[i].y = st::H_ani[i].z + st::H_ex[i].y + st::H_applied[1];//create::index; // + others
-        st::H_total[i].z = st::H_ani[i].z + st::H_ex[i].z + st::H_applied[2];//create::index; // + others
+        st::H_total[i].x = /*st::H_ani[i].x + 0*st::H_ex[i].x +*/st::H_applied[0];//create::index; // + others
+        st::H_total[i].y =/* st::H_ani[i].z + 0*st::H_ex[i].y +*/st::H_applied[1];//create::index; // + others
+        st::H_total[i].z = /*st::H_ani[i].z + 0*st::H_ex[i].z +*/st::H_applied[2];//create::index; // + others
     }
     return 0;
 }//end of H_total
