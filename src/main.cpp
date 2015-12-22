@@ -52,6 +52,6 @@ int main(){
      program::time_series();}
 
      else {std::cout << "Invalid program!"<< std::endl;}
-
+    
     return 0;
 }

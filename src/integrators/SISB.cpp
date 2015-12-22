@@ -5,35 +5,6 @@
 //this program it's free and can be redistribuite but without any warranty
 //
 //
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include <cmath>
-
-//ASMS headers
-#include "create.h"
-#include "storage.h"
-#include "mat.h"
-#include "times.h"
-#include "integrator.h"
-#include "fields.h"
-#include "template.h"
-namespace integrator{
-
-    //defining the coeficients
-    double dt = times::loop_times_step;
-    std::vector<template_t::atom> S_prime;
-    std::vector<template_t::atom> DS_prime; 
-    std::vector<template_t::atom> S_new;
-    std::vector<template_t::atom> S_initial;
-
-    void SISB(){
-        //resize the vectors
-
-
-
-
-}
 //author: Razvan-Vasile Ababei, York University
 //last update: 12 September 2015
 
@@ -47,6 +18,7 @@ namespace integrator{
 #include "../../hdr/integrator.h"
 #include "../../hdr/times.h"
 #include "../../hdr/template.h"
+
 namespace integrator{
 
      //defining the coeficients =|> DS = B1 (S X H) + B2 (S X S X H)
@@ -63,21 +35,7 @@ namespace integrator{
      std::vector<template_t::atom> S_initial;
      //normalized spin
      std::vector<template_t::atom>  S_tot;
-void LLG(){
-	//defining the coeficients ==> DS = -B1 (S X H) - B2 (S X S X H)
-/*	double B1 = - mat::gyro / (1 + mat::alpha * mat::alpha);
-	double B2 =  -(mat::alpha * mat::gyro) / (1 + mat::alpha * mat::alpha);
-	double dt = times::time_step; //times::time_step;
-	double time = times::loop_time_steps;// times::loop_time_steps;
-	//defining the euler step
-	std::vector <template_t::atom>  DS;
-	std::vector <template_t::atom>  DS_prime;
-	//intermediate step
-	std::vector <template_t::atom>  S_prime;
-	std::vector <template_t::atom>  S_par;
-        std::vector <template_t::atom> S_initial;
-	//normalized spin
-	std::vector <template_t::atom>  S_tot;*/
+void SISB(){
 
         //resize the vectors
 	DS.resize(create::index);
@@ -180,9 +138,6 @@ void LLG(){
                         st::atom[k].sy = S_tot[k].sy;
                         st::atom[k].sz = S_tot[k].sz;
                     }
-                    //fields_t::H_ex();
-                   // fields_t::H_an();
-        	   // fields_t::H_total(); 
 
        }//end of LLG function
 

@@ -36,10 +36,10 @@ namespace program{
 
                     integrator::LLG();
                     time++;
-               }    
+               }
               // std::cout<<st::H_ani[0].z<<"\t"<<st::H_ex[0].z<< "\t"<< st::H_total[0].z<<"\t"<<st::atom[0].sz<<std::endl;
                magnetization::magnetization_out();
-               
+
             }
 
               //  std::cout<<st::H_ani[5].z<<"\t"<<st::H_ex[5].z<< "\t"<< st::H_total[5].z<<"\t"<<st::atom[5].sz<<std::endl;
