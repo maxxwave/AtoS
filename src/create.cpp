@@ -16,9 +16,9 @@ namespace  create{
         st::atom.resize(index);
         //initializing the spin
         for (int i=0; i<index; i++ ){
-	st::atom[i].sx = 0.1;
-	st::atom[i].sy = 0.2;
-	st::atom[i].sz = 0.87;
+	st::atom[i].sx = 1;
+	st::atom[i].sy = 0.0;
+	st::atom[i].sz = 0.0;
 	st::atom[i].cx = index;
 	st::atom[i].cy = index;
 	st::atom[i].cz = index;

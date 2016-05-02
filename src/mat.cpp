@@ -19,7 +19,7 @@ namespace mat{
      double ku = 5.0e-23; //Joules
      double mu_s = 1.9; //muB
     //damping
-    double alpha = 1;
+    double alpha = 0.05;
     double gyro = 1.760859708e11;
 }
 //exchange matrix values
